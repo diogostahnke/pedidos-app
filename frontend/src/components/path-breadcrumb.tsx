@@ -18,9 +18,9 @@ function PathBreadCrumb() {
     <Breadcrumb>
       <BreadcrumbList>
         {pathsList.map((item, index) => (
-          <React.Fragment>
+          <React.Fragment key={item}>
             {index !== 0 && <BreadcrumbSeparator className="hidden md:block" />}
-            <BreadcrumbItem key={item} className="hidden md:block">
+            <BreadcrumbItem className="hidden md:block">
               <BreadcrumbLink asChild>
                 <Link to={item}>
                   {paths.find((path) => path.path === item)?.title}
