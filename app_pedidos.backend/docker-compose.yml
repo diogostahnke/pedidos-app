@@ -1,7 +1,8 @@
+name: pedidos-app
 services:
-  postgres:
+  postgres-db:
     image: postgres
-    container_name: pedidos-backend
+    container_name: postgres-db
     ports:
       - "5432:5432"
     restart: "always"
@@ -9,3 +10,10 @@ services:
       - POSTGRES_USERNAME=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
+  backend:
+    image: diogostahnke-pedido-app-backend:latest
+    restart: "always"
+    ports:
+      - 8080:8080
+    environment:
+      spring.datasource.url: "jdbc:postgresql://postgres-db:5432/postgres"
